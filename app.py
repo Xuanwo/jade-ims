@@ -1,12 +1,3 @@
-"""
-    Flaskr
-    ~~~~~~
-    A microblog example application written as Flask tutorial with
-    Flask and sqlite3.
-    :copyright: (c) 2015 by Armin Ronacher.
-    :license: BSD, see LICENSE for more details.
-"""
-
 import os
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
@@ -89,6 +80,7 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('show_entries'))
+
 
 if __name__ == '__main__':
     app.run()

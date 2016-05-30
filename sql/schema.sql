@@ -5,4 +5,4 @@ CREATE TABLE entries (
   text  string NOT NULL
 );
 SELECT *
-FROM entries
+FROM entries;
