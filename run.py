@@ -1,3 +1,4 @@
 from jade_ims import app
 
-app.run()
+if __name__ == '__main__':
+    app.run()
