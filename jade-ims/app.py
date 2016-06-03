@@ -1,4 +1,5 @@
 import os
+import sys
 from sqlite3 import dbapi2 as sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
     render_template, flash
@@ -19,7 +20,7 @@ def connect_db():
 def init_db():
     """Initializes the database."""
     db = get_db()
-    with app.open_resource('sql/schema.sql', mode='r') as f:
+    with app.open_resource('sql/init.sql', mode='r') as f:
         db.cursor().executescript(f.read())
     db.commit()
 
@@ -43,7 +44,7 @@ def close_db(error):
 @app.route('/')
 def show_entries():
     db = get_db()
-    cur = db.execute('SELECT title, text FROM entries ORDER BY id DESC')
+    cur = db.execute('SELECT Supplier_ID, Name FROM Supplier ORDER BY Supplier_ID DESC')
     entries = cur.fetchall()
     return render_template('show_entries.html', entries=entries)
 
@@ -53,7 +54,7 @@ def add_entry():
     if not session.get('logged_in'):
         abort(401)
     db = get_db()
-    db.execute('INSERT INTO entries (title, text) VALUES (?, ?)',
+    db.execute('INSERT INTO Supplier (Supplier_ID, Name) VALUES (?, ?)',
                [request.form['title'], request.form['text']])
     db.commit()
     flash('New entry was successfully posted')
@@ -79,6 +80,17 @@ def login():
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
+    return redirect(url_for('show_entries'))
+
+
+@app.route('/install')
+def install():
+    if not os.path.isfile('installed'):
+        init_db()
+        with open('installed', 'w+') as f:
+            f.close()
+    else:
+        flash('You are already installed')
     return redirect(url_for('show_entries'))
 
 
