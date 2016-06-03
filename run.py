@@ -1,3 +1,3 @@
-import jade_ims
+from jade_ims import app
 
-jade_ims.app.run()
+app.run()

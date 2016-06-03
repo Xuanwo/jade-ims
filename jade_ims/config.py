@@ -1,5 +1,4 @@
 DEBUG = True
-DATABASE = '/tmp/jade-ims.db'
 SECRET_KEY = 'development key'
 USERNAME = 'admin'
 PASSWORD = 'admin'
