@@ -1,8 +1,4 @@
-from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
-from jade_ims import app
-
-db = SQLAlchemy(app)
+from jade_ims import db
 
 
 class User(db.Model):
