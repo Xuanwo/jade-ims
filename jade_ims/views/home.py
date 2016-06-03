@@ -3,11 +3,11 @@ from flask import Blueprint, render_template
 home = Blueprint('home', __name__)
 
 
-@home.route('login')
+@home.route('/login')
 def login():
-    pass
+    return 'Hello,world!'
 
 
-@home.route('logout')
+@home.route('/logout')
 def logout():
     pass
