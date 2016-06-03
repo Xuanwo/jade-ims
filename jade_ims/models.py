@@ -1,4 +1,6 @@
-from jade_ims import db
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 class User(db.Model):
     """用户表
@@ -89,15 +91,15 @@ class InputBill(db.Model):
     Product_ID = db.Column(db.Integer, db.ForeignKey(Product.ID), nullable=False)
     Quantity = db.Column(db.Integer, nullable=False)
     Price = db.Column(db.Float, nullable=False)
-    Datetime = db.Column(db.Datetime, nullable=False)
+    DateTime = db.Column(db.DateTime, nullable=False)
     Remark = db.Column(db.String(1000))
 
-    def __init__(self, Supplier_ID, Product_ID, Quantity, Price, Datetime, Remark):
+    def __init__(self, Supplier_ID, Product_ID, Quantity, Price, DateTime, Remark):
         self.Supplier_ID = Supplier_ID
         self.Product_ID = Product_ID
         self.Quantity = Quantity
         self.Price = Price
-        self.Datetime = Datetime
+        self.DateTime = DateTime
         self.Remark = Remark
 
     def __repr__(self):
@@ -130,15 +132,15 @@ class SaleBill(db.Model):
     """
     ID = db.Column(db.Integer, primary_key=True)
     Product_ID = db.Column(db.Integer, db.ForeignKey(Product.ID), nullable=False)
-    Datetime = db.Column(db.Datetime, nullable=False)
+    DateTime = db.Column(db.DateTime, nullable=False)
     Quantity = db.Column(db.Integer, nullable=False)
     Price = db.Column(db.Float, nullable=False)
     Discount = db.Column(db.Float, nullable=False)
     Remark = db.Column(db.String(1000))
 
-    def __init__(self, Prodcut_ID, Datetime, Quantity, Price, Discount, Remark):
+    def __init__(self, Prodcut_ID, DateTime, Quantity, Price, Discount, Remark):
         self.Product_ID = Prodcut_ID
-        self.Datetime = Datetime
+        self.DateTime = DateTime
         self.Quantity = Quantity
         self.Price = Price
         self.Discount = Discount
@@ -155,14 +157,14 @@ class LeaveStockBill(db.Model):
     ID = db.Column(db.Integer, primary_key=True)
     Product_ID = db.Column(db.Integer, db.ForeignKey(Product.ID), nullable=False)
     SaleBill_ID = db.Column(db.Integer, db.ForeignKey(SaleBill.ID), nullable=False)
-    Datetime = db.Column(db.Datetime, nullable=False)
+    DateTime = db.Column(db.DateTime, nullable=False)
     Quantity = db.Column(db.Integer, nullable=False)
     Remark = db.Column(db.String(1000))
 
-    def __init__(self, Product_ID, SaleBill_ID, Datetime, Quantity, Remark):
+    def __init__(self, Product_ID, SaleBill_ID, DateTime, Quantity, Remark):
         self.Product_ID = Product_ID
         self.SaleBill_ID = SaleBill_ID
-        self.Datetime = Datetime
+        self.DateTime = DateTime
         self.Quantity = Quantity
         self.Remark = Remark
 

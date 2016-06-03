@@ -1,16 +1,20 @@
-import views
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from models import db
+from werkzeug.utils import import_string
 
-app = Flask(__name__, instance_relative_config=True)
-app.config.from_object('config')
-app.config.from_pyfile('config.py')
+bps = ['jade_ims.views.home:home',
+       'jade_ims.views.install:install'
+       ]
 
-from jade_ims.views.home import home
-from jade_ims.views.install import install
 
-app.register_blueprint(home)
-app.register_blueprint(install)
+def create_app():
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_object('config')
+    app.config.from_pyfile('config.py')
+    db.init_app(app)
 
-db = SQLAlchemy(app)
-db.init_app(app)
+    for path in bps:
+        bp = import_string(path)
+        app.register_blueprint(bp)
+
+    return app
