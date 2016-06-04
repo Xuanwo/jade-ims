@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash
-from ..models import db, User
+from jade_ims.models import db
 
 install = Blueprint('install', __name__)
 
@@ -15,13 +15,3 @@ def check_install():
 def remove():
     db.drop_all()
     return 'Remove finished'
-
-
-@install.route('/add')
-def add():
-    admin = User('admin', 'admin@example.com')
-    guest = User('guest', 'guest@example.com')
-    db.session.add(admin)
-    db.session.add(guest)
-    db.session.commit()
-    return str(User.query.all())

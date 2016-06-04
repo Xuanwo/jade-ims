@@ -2,7 +2,7 @@ from flask import Flask
 from models import db
 from werkzeug.utils import import_string
 
-bps = ['jade_ims.views.home:home',
+bps = ['jade_ims.views.home:dashboard',
        'jade_ims.views.install:install'
        ]
 
