@@ -2,8 +2,16 @@ from flask import Flask
 from models import db
 from werkzeug.utils import import_string
 
-bps = ['jade_ims.views.home:dashboard',
-       'jade_ims.views.install:install'
+bps = ['jade_ims.views.dashboard:dashboard',
+       'jade_ims.views.install:install',
+       'jade_ims.views.login:login',
+       'jade_ims.views.sale:sale',
+       'jade_ims.views.user:user',
+       'jade_ims.views.purchase.inputbill:inputbill',
+       'jade_ims.views.purchase.supplier:supplier',
+       'jade_ims.views.stock.enterstockbill:enterstockbill',
+       'jade_ims.views.stock.leavestockbill:leavestockbill',
+       'jade_ims.views.stock.stock:stock'
        ]
 
 
