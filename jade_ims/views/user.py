@@ -5,7 +5,7 @@ user = Blueprint('user', __name__)
 
 @user.route('/user')
 def list_user():
-    pass
+    return render_template('user.html')
 
 
 @user.route('/user/add')
@@ -15,9 +15,4 @@ def add_user():
 
 @user.route('/user/del')
 def del_user():
-    pass
-
-
-@user.route('/user/changepass')
-def change_pass():
     pass

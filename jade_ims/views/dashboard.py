@@ -7,14 +7,5 @@ dashboard = Blueprint('dashboard', __name__)
 @dashboard.route('/')
 @dashboard.route('/index')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', page_header='仪表盘')
 
-
-@dashboard.route('/login')
-def login():
-    return 'Hello,world!'
-
-
-@dashboard.route('/logout')
-def logout():
-    pass
