@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, render_template, flash
 from ..models import db, User
 
 install = Blueprint('install', __name__)
@@ -7,8 +7,8 @@ install = Blueprint('install', __name__)
 @install.route('/install')
 def check_install():
     db.create_all()
-    # return "Install Finished"
-    return __name__
+    flash("Install finished")
+    return render_template("install.html")
 
 
 @install.route('/remove')

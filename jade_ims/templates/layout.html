@@ -1,17 +1,25 @@
 <!doctype html>
-<title>Flaskr</title>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<head>
+    <title>马克波罗玉石进销存管理系统</title>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
+</head>
+<body>
 <div class=page>
-  <h1>Flaskr</h1>
-  <div class=metanav>
-  {% if not session.logged_in %}
-    <a href="{{ url_for('login') }}">log in</a>
-  {% else %}
-    <a href="{{ url_for('logout') }}">log out</a>
-  {% endif %}
-  </div>
-  {% for message in get_flashed_messages() %}
-    <div class=flash>{{ message }}</div>
-  {% endfor %}
-  {% block body %}{% endblock %}
+    <h1>马克波罗玉石进销存管理系统</h1>
+{#    <div class=metanav>#}
+{#        {% if not session.logged_in %}#}
+{#            <a href="{{ url_for('login') }}">log in</a>#}
+{#        {% else %}#}
+{#            <a href="{{ url_for('logout') }}">log out</a>#}
+{#        {% endif %}#}
+{#    </div>#}
+    {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
+    {% endfor %}
+    {% block body %}{% endblock %}
 </div>
+<script type=application/javascript href="{{ url_for('static', filename='js/jquery-2.2.4.min.js') }}"></script>
+<script type=application/javascript href="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
