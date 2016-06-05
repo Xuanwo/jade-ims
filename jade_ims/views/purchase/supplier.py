@@ -1,7 +1,33 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request, redirect, url_for, flash
+from jade_ims.models import db, Supplier
+import sqlalchemy
 
 supplier = Blueprint('supplier', __name__)
 
+
 @supplier.route('/purchase/supplier')
 def list_supplier():
-    return render_template('purchase/supplier.html')
+    data = Supplier.query.all()
+    return render_template('purchase/supplier.html',
+                           title='供应商管理',
+                           data=data)
+
+
+@supplier.route('/purchase/supplier/add', methods=['GET', 'POST'])
+def add_supplier():
+    form = request.form
+    if request.method == 'POST':
+        print(form)
+        supplier = Supplier(form['supplier_name'],
+                            form['supplier_constract'],
+                            form['supplier_phone'],
+                            form['supplier_address'],
+                            form['supplier_remark'])
+        try:
+            db.session.add(supplier)
+            db.session.commit()
+            flash('供应商添加成功！', 'success')
+        except:
+            db.session.rollback()
+            flash('输入不合法，请重新输入！', 'danger')
+    return redirect(url_for('supplier.list_supplier'))

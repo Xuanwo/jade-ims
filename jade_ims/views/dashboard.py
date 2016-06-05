@@ -14,7 +14,7 @@ def index():
     stock_data = sum(i.Quantity for i in Stock.query.all())
     customer_data = len(Customer.query.all())
     return render_template('index.html',
-                           page_header='仪表盘',
+                           title='仪表盘',
                            input_data=input_data,
                            sale_data=sale_data,
                            stock_data=stock_data,

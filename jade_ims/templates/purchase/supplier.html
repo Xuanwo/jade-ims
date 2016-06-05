@@ -1,1 +1,90 @@
 {% extends 'layout.html' %}
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    新增供应商
+                </div>
+                <div class="panel-body">
+                    <form role="form" method="post" action="/purchase/supplier/add">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">公司名称</span>
+                                    <input type="text" name="supplier_name" class="form-control"
+                                           placeholder="请在此处填写公司名称">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">联系人姓名</span>
+                                    <input type="text" name="supplier_constract" class="form-control"
+                                           placeholder="请在此处填写联系人姓名">
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">联系方式</span>
+                                    <input type="text" name="supplier_phone" class="form-control"
+                                           placeholder="请在此处填写联系方式">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group input-group">
+                                    <span class="input-group-addon">公司地址</span>
+                                    <input type="text" name="supplier_address" class="form-control"
+                                           placeholder="请在此处填写公司地址">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="form-group">
+                                    <label>备注</label>
+                                    <textarea class="form-control" name="supplier_remark" rows="3"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        {% for category, message in get_flashed_messages(with_categories=true) %}
+                            <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+                        {% endfor %}
+                        <button type="submit" class="btn btn-default">新增供应商</button>
+                        <button type="reset" class="btn btn-default">重新填写</button>
+                    </form>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    供应商信息
+                </div>
+                <div class="panel-body">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td>公司名称</td>
+                            <td>联系人姓名</td>
+                            <td>联系方式</td>
+                            <td>公司地址</td>
+                            <td>备注</td>
+                        </tr>
+                        {% for i in data %}
+                            <tr>
+                                <td>{{ i.Name }}</td>
+                                <td>{{ i.Constact }}</td>
+                                <td>{{ i.Phone }}</td>
+                                <td>{{ i.Address }}</td>
+                                <td>{{ i.Remark }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

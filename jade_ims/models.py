@@ -29,16 +29,16 @@ class Supplier(db.Model):
     """
     ID = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(250), unique=True, nullable=False)
-    Address = db.Column(db.String(250))
-    Phone = db.Column(db.String(20), nullable=False)
     Constact = db.Column(db.String(20), nullable=False)
+    Phone = db.Column(db.String(20), nullable=False)
+    Address = db.Column(db.String(250))
     Remark = db.Column(db.String(1000))
 
-    def __init__(self, Name, Address, Phone, Constact, Remark):
+    def __init__(self, Name='', Constact='', Phone='', Address='', Remark=''):
         self.Name = Name
-        self.Address = Address
-        self.Phone = Phone
         self.Constact = Constact
+        self.Phone = Phone
+        self.Address = Address
         self.Remark = Remark
 
     def __repr__(self):

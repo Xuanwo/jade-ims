@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="A system for jade ims">
     <meta name="author" content="Xuanwo">
-    <title>马克波罗玉石进销存管理系统</title>
+    <title> {{ title }}</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/metisMenu.min.css') }}">
@@ -88,9 +88,7 @@
         </div>
     </nav>
     <div id="page-wrapper">
-        <div class="col-lg-12">
-            <h1 class="page-header">{{ page_header }}</h1>
-        </div>
+        <div style="padding-bottom: 20px"></div>
         {% block body %}
         {% endblock %}
     </div>
