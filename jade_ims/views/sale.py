@@ -4,7 +4,6 @@ sale = Blueprint('sale', __name__)
 
 
 @sale.route('/sale')
-@sale.route('/sale/list')
 def list():
     return render_template('sale.html')
 

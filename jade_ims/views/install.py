@@ -7,8 +7,7 @@ install = Blueprint('install', __name__)
 @install.route('/install')
 def check_install():
     db.create_all()
-    flash("Install finished")
-    return render_template("install.html")
+    return render_template("install.html", page_header='安装成功！')
 
 
 @install.route('/remove')

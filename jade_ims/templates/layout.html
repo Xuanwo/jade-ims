@@ -4,14 +4,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
+    <meta name="description" content="A system for jade ims">
     <meta name="author" content="Xuanwo">
     <title>马克波罗玉石进销存管理系统</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap-theme.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jade.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/metisMenu.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jade.css') }}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -42,7 +41,7 @@
                     <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                     </li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    <li><a href="{{ url_for('login.user_logout') }}"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                     </li>
                 </ul>
             </li>
@@ -60,7 +59,7 @@
                                 <a href="/purchase/supplier">供应商管理</a>
                             </li>
                             <li>
-                                <a href="/purchase/inputbill">进货单</a>
+                                <a href="/purchase/input">进货单</a>
                             </li>
                         </ul>
                     </li>
@@ -82,7 +81,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="/user"><i class="fa fa-users fa-fw"></i> 用户管理</a>
+                        <a href="/customer"><i class="fa fa-users fa-fw"></i> 客户管理</a>
                     </li>
                 </ul>
             </div>
