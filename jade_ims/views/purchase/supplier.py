@@ -13,7 +13,7 @@ def list_supplier():
                            data=data)
 
 
-@supplier.route('/purchase/supplier/add', methods=['GET', 'POST'])
+@supplier.route('/purchase/supplier/add', methods=['POST'])
 def add_supplier():
     form = request.form
     if request.method == 'POST':
@@ -30,4 +30,17 @@ def add_supplier():
         except:
             db.session.rollback()
             flash('输入不合法，请重新输入！', 'danger')
+    return redirect(url_for('supplier.list_supplier'))
+
+
+@supplier.route('/purchase/supplier/del', methods=['POST'])
+def del_supplier():
+    data = request.json
+    print(data)
+    if request.method == 'POST':
+        for i in data['checked']:
+            print(i)
+            db.session.delete(Supplier.query.get(int(i)))
+            db.session.commit()
+        flash('供应商删除成功！', 'success')
     return redirect(url_for('supplier.list_supplier'))
