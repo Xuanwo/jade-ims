@@ -20,6 +20,11 @@ def create_app():
     app.config.from_object('config')
     app.config.from_pyfile('config.py')
 
+    @app.before_request
+    def check_need_login():
+        if 'logged_in' not in session and request.endpoint not in ('login.user_login', 'static'):
+            return redirect(url_for('login.user_login'))
+
     db.init_app(app)
 
     for path in bps:

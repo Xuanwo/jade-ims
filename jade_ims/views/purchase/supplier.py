@@ -6,11 +6,16 @@ supplier = Blueprint('supplier', __name__)
 
 
 @supplier.route('/purchase/supplier')
-def list_supplier():
+def show_supplier():
     data = Supplier.query.all()
     return render_template('purchase/supplier.html',
                            title='供应商管理',
                            data=data)
+
+
+@supplier.route("/purchase/supplier/list", methods=['POST'])
+def list_supplier():
+    pass
 
 
 @supplier.route('/purchase/supplier/add', methods=['POST'])
