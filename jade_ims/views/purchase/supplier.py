@@ -6,16 +6,11 @@ supplier = Blueprint('supplier', __name__)
 
 
 @supplier.route('/purchase/supplier')
-def show_supplier():
+def list_supplier():
     data = Supplier.query.all()
     return render_template('purchase/supplier.html',
                            title='供应商管理',
                            data=data)
-
-
-@supplier.route("/purchase/supplier/list", methods=['POST'])
-def list_supplier():
-    pass
 
 
 @supplier.route('/purchase/supplier/add', methods=['POST'])
@@ -40,11 +35,9 @@ def add_supplier():
 
 @supplier.route('/purchase/supplier/del', methods=['POST'])
 def del_supplier():
-    data = request.json
-    print(data)
+    data = request.form.getlist('supplier_check')
     if request.method == 'POST':
-        for i in data['checked']:
-            print(i)
+        for i in data:
             db.session.delete(Supplier.query.get(int(i)))
             db.session.commit()
         flash('供应商删除成功！', 'success')

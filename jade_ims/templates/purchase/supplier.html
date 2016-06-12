@@ -16,8 +16,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">公司名称</span>
-                                            <input type="text" name="supplier_name" class="form-control"
-                                                   placeholder="请在此处填写公司名称">
+                                            <input type="text" name="supplier_name" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -25,15 +24,13 @@
                                     <div class="col-lg-6">
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">联系人姓名</span>
-                                            <input type="text" name="supplier_constract" class="form-control"
-                                                   placeholder="请在此处填写联系人姓名">
+                                            <input type="text" name="supplier_constract" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">联系方式</span>
-                                            <input type="text" name="supplier_phone" class="form-control"
-                                                   placeholder="请在此处填写联系方式">
+                                            <input type="text" name="supplier_phone" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -41,8 +38,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">公司地址</span>
-                                            <input type="text" name="supplier_address" class="form-control"
-                                                   placeholder="请在此处填写公司地址">
+                                            <input type="text" name="supplier_address" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -73,31 +69,31 @@
                     供应商信息
                 </div>
                 <div class="panel-body">
-                    <table class="table">
-                        <tbody>
-                        <tr>
-                            <td></td>
-                            <td>ID</td>
-                            <td>公司名称</td>
-                            <td>联系人姓名</td>
-                            <td>联系方式</td>
-                            <td>公司地址</td>
-                            <td>备注</td>
-                        </tr>
-                        {% for i in data %}
+                    <form id="supplier_form" method="post" role="form">
+                        <table class="table">
+                            <tbody>
                             <tr>
-                                <td><input type="checkbox" class="supplier_info"></td>
-                                <td class="supplier_ID">{{ i.ID }}</td>
-                                <td>{{ i.Name }}</td>
-                                <td>{{ i.Constact }}</td>
-                                <td>{{ i.Phone }}</td>
-                                <td>{{ i.Address }}</td>
-                                <td>{{ i.Remark }}</td>
+                                <td></td>
+                                <td>公司名称</td>
+                                <td>联系人姓名</td>
+                                <td>联系方式</td>
+                                <td>公司地址</td>
+                                <td>备注</td>
                             </tr>
-                        {% endfor %}
-                        </tbody>
-
-                    </table>
+                            {% for i in data %}
+                                <tr>
+                                    <td><input type="checkbox" value="{{ i.ID }}"
+                                               name="supplier_check"></td>
+                                    <td>{{ i.Name }}</td>
+                                    <td>{{ i.Constact }}</td>
+                                    <td>{{ i.Phone }}</td>
+                                    <td>{{ i.Address }}</td>
+                                    <td>{{ i.Remark }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </form>
                     {% for category, message in get_flashed_messages(with_categories=true) %}
                         <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
                     {% endfor %}
@@ -106,33 +102,12 @@
                                 data-target="#add_supplier">
                             增加
                         </button>
-                        <button type="button" class="btn btn-danger" onclick="post_selectd_supplier()">删除</button>
+                        <button type="submit" class="btn btn-danger" form="supplier_form"
+                                formaction="/purchase/supplier/del" formmethod="post">删除
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
-
-{% block exitend_js %}
-    <script>
-        function post_selectd_supplier() {
-            var data = {
-                'checked': []
-            };
-            var supplier_info = document.getElementsByClassName('supplier_info');
-            var supplier_ID = document.getElementsByClassName('supplier_ID');
-            for (var i = 0; i < supplier_info.length; i++) {
-                if (supplier_info[i].checked) {
-                    data['checked'].push(supplier_ID[i].innerText);
-                }
-            }
-            var xhr = new XMLHttpRequest();
-            xhr.open('POST', '/purchase/supplier/del', false);
-            xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
-            xhr.send(JSON.stringify(data));
-{#            window.location.reload();#}
-            {#            window.location.href = '/purchase/supplier';#}
-        }
-    </script>
 {% endblock %}
