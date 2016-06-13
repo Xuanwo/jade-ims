@@ -1,3 +1,5 @@
+-- data for Supplier
+
 INSERT INTO Supplier VALUES (
   1,
   "北京优帆科技有限公司",

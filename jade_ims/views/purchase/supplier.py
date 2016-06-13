@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from jade_ims.models import db, Supplier
-import sqlalchemy
 
 supplier = Blueprint('supplier', __name__)
 
