@@ -24,9 +24,32 @@ def list_stock():
                            data=data)
 
 
-@stock.route('/stock/add')
+@stock.route('/stock/add', methods=['POST'])
 def add_product():
-    pass
+    form = request.form
+    print(form)
+    if request.method == 'POST':
+        product = Product(
+            form['product_name'],
+            float(form['product_price']),
+            int(form['product_supplier']),
+            form['product_remark']
+        )
+        try:
+            db.session.add(product)
+            db.session.commit()
+            flash('商品添加成功!', 'success')
+        except:
+            db.session.rollback()
+            flash('输入不合法,请重新输入!', 'danger')
+        stock = Stock(
+            Product.query.filter_by(Name=form['product_name']).first().ID,
+            0,
+            ''
+        )
+        db.session.add(stock)
+        db.session.commit()
+    return redirect(url_for('stock.list_stock'))
 
 
 @stock.route('/stock/del')
