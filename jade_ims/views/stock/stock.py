@@ -52,6 +52,13 @@ def add_product():
     return redirect(url_for('stock.list_stock'))
 
 
-@stock.route('/stock/del')
-def del_route():
-    pass
+@stock.route('/stock/del', methods=['POST'])
+def del_product():
+    data = request.form.getlist('stock_check')
+    if request.method == 'POST':
+        for i in data:
+            db.session.delete(Product.query.get(int(i)))
+            db.session.delete(Stock.query.get(int(i)))
+            db.session.commit()
+        flash('商品删除成功!', 'success')
+    return redirect(url_for('stock.list_stock'))
