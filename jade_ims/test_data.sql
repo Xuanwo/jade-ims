@@ -17,3 +17,17 @@ INSERT INTO Supplier VALUES (
   "深圳市南山区高新科技园中区一路腾讯大厦",
   "只要充钱，你就能变得更强！"
 );
+
+INSERT INTO product VALUES (
+  1,
+  "iPhone6s",
+  "70000",
+  1,
+  "身份的象征"
+);
+
+INSERT INTO stock VALUES (
+  1,
+  100,
+  ""
+);
