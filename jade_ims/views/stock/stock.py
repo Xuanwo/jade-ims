@@ -7,6 +7,7 @@ stock = Blueprint('stock', __name__)
 @stock.route('/stock')
 def list_stock():
     product_data = Product.query.all()
+    supplier_data = Supplier.query.all()
     data = []
     for i in product_data:
         data.append(
@@ -21,7 +22,9 @@ def list_stock():
         )
     return render_template('stock/stock.html',
                            title="库存信息",
-                           data=data)
+                           data=data,
+                           supplier_data=supplier_data
+                           )
 
 
 @stock.route('/stock/add', methods=['POST'])
@@ -32,7 +35,7 @@ def add_product():
         product = Product(
             form['product_name'],
             float(form['product_price']),
-            int(form['product_supplier']),
+            int(Supplier.query.filter_by(Name=form['product_supplier']).first().ID),
             form['product_remark']
         )
         try:
