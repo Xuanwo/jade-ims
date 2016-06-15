@@ -49,3 +49,14 @@ def add_input():
             db.session.rollback()
             flash('输入不合法, 请重新输入!', 'danger')
     return redirect(url_for('inputbill.list_input'))
+
+
+@inputbill.route('/purchase/input/del', methods=['POST'])
+def del_input():
+    data = request.form.getlist('inputbill_check')
+    if request.method == 'POST':
+        for i in data:
+            db.session.delete(InputBill.query.get(int(i)))
+            db.session.commit()
+        flash('进货单删除成功!', 'success')
+    return redirect(url_for('inputbill.list_input'))
