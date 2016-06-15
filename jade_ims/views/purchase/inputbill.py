@@ -13,6 +13,7 @@ def list_input():
     for i in inputbill_data:
         data.append(
             {
+                "ID": i.ID,
                 "Name": Product.query.get(i.Product_ID).Name,
                 "Supplier_Name": Supplier.query.get(
                     Product.query.get(i.Product_ID).Supplier_ID
