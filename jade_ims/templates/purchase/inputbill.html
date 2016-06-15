@@ -51,7 +51,7 @@
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label>备注</label>
-                                        <textarea class="form-control" name="customer_remark"
+                                        <textarea class="form-control" name="product_remark"
                                                   rows="3"></textarea>
                                     </div>
                                 </div>
@@ -71,7 +71,7 @@
         <div class="panel panel-default">
 
             <div class="panel-heading">
-                供应商信息
+                进货单信息
             </div>
             <div class="panel-body">
                 <form id="customer_form" method="post" role="form">
@@ -79,8 +79,11 @@
                         <tbody>
                         <tr>
                             <td></td>
-                            <td>顾客姓名</td>
-                            <td>联系方式</td>
+                            <td>商品名</td>
+                            <td>供货商</td>
+                            <td>数量</td>
+                            <td>价格</td>
+                            <td>进货时间</td>
                             <td>备注</td>
                         </tr>
                         {% for i in data %}
@@ -88,7 +91,10 @@
                             <td><input type="checkbox" value="{{ i.ID }}"
                                        name="customer_check"></td>
                             <td>{{ i.Name }}</td>
-                            <td>{{ i.Phone }}</td>
+                            <td>{{ i.Supplier_Name }}</td>
+                            <td>{{ i.Quantity }}</td>
+                            <td>{{ i.Price }}</td>
+                            <td>{{ i.DateTime }}</td>
                             <td>{{ i.Remark }}</td>
                         </tr>
                         {% endfor %}

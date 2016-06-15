@@ -88,15 +88,13 @@ class InputBill(db.Model):
 
     """
     ID = db.Column(db.Integer, primary_key=True)
-    Supplier_ID = db.Column(db.Integer, db.ForeignKey(Supplier.ID), nullable=False)
     Product_ID = db.Column(db.Integer, db.ForeignKey(Product.ID), nullable=False)
     Quantity = db.Column(db.Integer, nullable=False)
     Price = db.Column(db.Float, nullable=False)
     DateTime = db.Column(db.DateTime, nullable=False)
     Remark = db.Column(db.String(1000))
 
-    def __init__(self, Supplier_ID, Product_ID, Quantity, Price, DateTime, Remark):
-        self.Supplier_ID = Supplier_ID
+    def __init__(self, Product_ID, Quantity, Price, DateTime, Remark):
         self.Product_ID = Product_ID
         self.Quantity = Quantity
         self.Price = Price
