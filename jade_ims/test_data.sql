@@ -22,7 +22,7 @@ INSERT INTO Supplier VALUES (
 INSERT INTO product VALUES (
   1,
   "iPhone6s",
-  "70000",
+  "7000",
   1,
   "身份的象征"
 );
@@ -41,4 +41,26 @@ INSERT INTO customer VALUES (
   "13000000000",
   "中国地质大学（北京）",
   "对的呀，就是这样的呀"
-)
+);
+
+--data for InputBill
+INSERT INTO input_bill VALUES (
+  1,
+  1,
+  100,
+  7000,
+  "2016-06-09 06:00:00.000000",
+  "iPhone采购"
+);
+
+--data for SaleBill
+INSERT INTO sale_bill VALUES (
+  1,
+  1,
+  1,
+  "2016-06-09 06:00:00.000000",
+  1,
+  7000,
+  "强行购买"
+);
+
