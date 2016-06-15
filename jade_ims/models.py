@@ -52,11 +52,13 @@ class Customer(db.Model):
     ID = db.Column(db.Integer, primary_key=True)
     Name = db.Column(db.String(250), unique=True, nullable=False)
     Phone = db.Column(db.String(20), nullable=False)
+    Address = db.Column(db.String(250), nullable=False)
     Remark = db.Column(db.String(1000))
 
-    def __init__(self, Name, Phone, Remark):
+    def __init__(self, Name, Phone, Address, Remark):
         self.Name = Name
         self.Phone = Phone
+        self.Address = Address
         self.Remark = Remark
 
     def __repr__(self):

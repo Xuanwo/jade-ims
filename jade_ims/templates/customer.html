@@ -30,6 +30,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-lg-12">
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon">送货地址</span>
+                                            <input type="text" name="customer_address" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>备注</label>
                                                     <textarea class="form-control" name="customer_remark"
@@ -62,6 +70,7 @@
                                 <td></td>
                                 <td>顾客姓名</td>
                                 <td>联系方式</td>
+                                <td>送货地址</td>
                                 <td>备注</td>
                             </tr>
                             {% for i in data %}
@@ -70,6 +79,7 @@
                                                name="customer_check"></td>
                                     <td>{{ i.Name }}</td>
                                     <td>{{ i.Phone }}</td>
+                                    <td>{{ i.Address }}</td>
                                     <td>{{ i.Remark }}</td>
                                 </tr>
                             {% endfor %}
