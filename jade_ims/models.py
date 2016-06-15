@@ -133,18 +133,18 @@ class SaleBill(db.Model):
     """
     ID = db.Column(db.Integer, primary_key=True)
     Product_ID = db.Column(db.Integer, db.ForeignKey(Product.ID), nullable=False)
+    Customer_ID = db.Column(db.Integer, db.ForeignKey(Customer.ID), nullable=False)
     DateTime = db.Column(db.DateTime, nullable=False)
     Quantity = db.Column(db.Integer, nullable=False)
     Price = db.Column(db.Float, nullable=False)
-    Discount = db.Column(db.Float, nullable=False)
     Remark = db.Column(db.String(1000))
 
-    def __init__(self, Prodcut_ID, DateTime, Quantity, Price, Discount, Remark):
+    def __init__(self, Prodcut_ID, Customer_ID,DateTime, Quantity, Price, Remark):
         self.Product_ID = Prodcut_ID
+        self.Customer_ID = Customer_ID
         self.DateTime = DateTime
         self.Quantity = Quantity
         self.Price = Price
-        self.Discount = Discount
         self.Remark = Remark
 
     def __repr__(self):

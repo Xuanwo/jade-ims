@@ -13,10 +13,33 @@
                         <div class="modal-body">
                             <form role="form" method="post" id="new_salebill">
                                 <div class="row">
-                                    <div class="col-lg-12">
+                                    <div class="col-lg-6">
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">商品名称</span>
-                                            <input type="text" name="product_name" class="form-control">
+                                            <select class="form-control" name="product_name">
+                                                {% for i in product_data %}
+                                                    <option>{{ i.Name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon">顾客姓名</span>
+                                            <select class="form-control" name="customer_name">
+                                                {% for i in customer_data %}
+                                                    <option>{{ i.Name }}</option>
+                                                {% endfor %}
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon">成交时间</span>
+                                            <input type="text" name="datetime" id="salebill_datetime" readonly
+                                                   class="form_datetime form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -24,28 +47,13 @@
                                     <div class="col-lg-6">
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">成交价格</span>
-                                            <input type="text" name="product_price" class="form-control">
+                                            <input type="text" name="salebill_price" class="form-control">
                                         </div>
                                     </div>
                                     <div class="col-lg-6">
                                         <div class="form-group input-group">
                                             <span class="input-group-addon">购买数量</span>
-                                            <input type="text" name="product_number" class="form-control">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">顾客姓名</span>
-                                            <select>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="form-group input-group">
-                                            <span class="input-group-addon">送货地址</span>
-                                            <input type="text" name="customer_address" class="form-control">
+                                            <input type="text" name="salebill_number" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -53,7 +61,7 @@
                                     <div class="col-lg-12">
                                         <div class="form-group">
                                             <label>备注</label>
-                                                    <textarea class="form-control" name="product_remark"
+                                                    <textarea class="form-control" name="salebill_remark"
                                                               rows="3"></textarea>
                                         </div>
                                     </div>
@@ -62,8 +70,8 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-                            <button type="submit" class="btn btn-primary" form="new_product" formmethod="post"
-                                    formaction="/salebill/add">
+                            <button type="submit" class="btn btn-primary" form="new_salebill" formmethod="post"
+                                    formaction="/sale/add">
                                 新增
                             </button>
                         </div>
@@ -81,19 +89,21 @@
                             <tr>
                                 <td></td>
                                 <td>商品名称</td>
-                                <td>商品价格</td>
-                                <td>供货商</td>
-                                <td>存货数量</td>
+                                <td>顾客姓名</td>
+                                <td>成交价格</td>
+                                <td>购买数量</td>
+                                <td>成交时间</td>
                                 <td>备注</td>
                             </tr>
                             {% for i in data %}
                                 <tr>
                                     <td><input type="checkbox" value="{{ i.ID }}"
                                                name="salebill_check"></td>
-                                    <td>{{ i.Name }}</td>
+                                    <td>{{ i.Product_Name }}</td>
+                                    <td>{{ i.Customer_Name }}</td>
                                     <td>{{ i.Price }}</td>
-                                    <td>{{ i.Supplier_Name }}</td>
                                     <td>{{ i.Quantity }}</td>
+                                    <td>{{ i.DateTime }}</td>
                                     <td>{{ i.Remark }}</td>
                                 </tr>
                             {% endfor %}
@@ -109,7 +119,7 @@
                             增加
                         </button>
                         <button type="submit" class="btn btn-danger" form="salebill_form"
-                                formaction="/salebill/del" formmethod="post">删除
+                                formaction="/sale/del" formmethod="post">删除
                         </button>
                     </div>
                 </div>

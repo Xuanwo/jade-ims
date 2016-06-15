@@ -11,7 +11,7 @@ INSERT INTO Supplier VALUES (
 
 INSERT INTO Supplier VALUES (
   2,
-  "Google",
+  "Google ",
   "Larry Page",
   "13000000000",
   "美国",
