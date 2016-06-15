@@ -52,6 +52,12 @@ def add_salebill():
     return redirect(url_for('sale.list_salebill'))
 
 
-@sale.route('/sale/del')
+@sale.route('/sale/del', methods=['POST'])
 def del_salebill():
-    pass
+    data = request.form.getlist('salebill_check')
+    if request.method == 'POST':
+        for i in data:
+            db.session.delete(SaleBill.query.get(int(i)))
+            db.session.commit()
+        flash('销货单删除成功！', 'success')
+    return redirect(url_for('sale.list_salebill'))
