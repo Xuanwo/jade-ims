@@ -11,11 +11,13 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/font-awesome.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/metisMenu.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/jade.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/bootstrap-datetimepicker.min.css')}}">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 </head>
 <body>
@@ -97,5 +99,10 @@
 <script type="application/javascript" src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 <script type="application/javascript" src="{{ url_for('static', filename='js/metisMenu.min.js') }}"></script>
 <script type="application/javascript" src="{{ url_for('static', filename='js/jade.js') }}"></script>
+<script type="application/javascript"
+        src="{{ url_for('static', filename='js/bootstrap-datetimepicker.min.js')}}"></script>
+<script type="text/javascript">
+    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
+</script>
 </body>
 </html>

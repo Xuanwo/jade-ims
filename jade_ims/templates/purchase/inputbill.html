@@ -1,1 +1,114 @@
 {% extends 'layout.html' %}
+{% block body %}
+<div class="row">
+    <div class="col-lg-12">
+        <div class="modal fade" id="add_inputbill" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">新增进货单</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form role="form" method="post" id="new_inputbill">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon">商品名</span>
+                                        <select class="form-control" name="product_name">
+                                            {% for i in product_data%}
+                                            <option>{{i.Name}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon">进货数量</span>
+                                        <input type="number" name="quantity" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon">进货价格</span>
+                                        <input type="number" name="price" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group input-group">
+                                        <span class="input-group-addon">进货时间</span>
+                                        <input type="text" name="datetime" id="inputbill_datetime" readonly
+                                               class="form_datetime form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label>备注</label>
+                                        <textarea class="form-control" name="customer_remark"
+                                                  rows="3"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button type="submit" class="btn btn-primary" form="new_inputbill" formmethod="post"
+                                formaction="/purchase/input/add">
+                            新增
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                供应商信息
+            </div>
+            <div class="panel-body">
+                <form id="customer_form" method="post" role="form">
+                    <table class="table">
+                        <tbody>
+                        <tr>
+                            <td></td>
+                            <td>顾客姓名</td>
+                            <td>联系方式</td>
+                            <td>备注</td>
+                        </tr>
+                        {% for i in data %}
+                        <tr>
+                            <td><input type="checkbox" value="{{ i.ID }}"
+                                       name="customer_check"></td>
+                            <td>{{ i.Name }}</td>
+                            <td>{{ i.Phone }}</td>
+                            <td>{{ i.Remark }}</td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </form>
+                {% for category, message in get_flashed_messages(with_categories=true) %}
+                <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+                {% endfor %}
+                <div class="btn-group pull-right" role="group">
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#add_inputbill">
+                        增加
+                    </button>
+                    <button type="submit" class="btn btn-danger" form="customer_form"
+                            formaction="/customer/del" formmethod="post">删除
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
