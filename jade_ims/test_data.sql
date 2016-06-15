@@ -2,22 +2,23 @@
 
 INSERT INTO Supplier VALUES (
   1,
-  "北京优帆科技有限公司",
-  "王玉圆",
+  "Apple",
+  "库克",
   "13000000000",
-  "北京市朝阳区北苑路甲13号北辰新纪元大厦2号楼1503",
-  "Test for remark"
+  "美国",
+  "爱买不买！"
 );
 
 INSERT INTO Supplier VALUES (
   2,
-  "腾讯控股有限公司",
-  "马化腾",
+  "Google",
+  "Larry Page",
   "13000000000",
-  "深圳市南山区高新科技园中区一路腾讯大厦",
-  "只要充钱，你就能变得更强！"
+  "美国",
+  "谷歌大法好！"
 );
 
+-- data for Product
 INSERT INTO product VALUES (
   1,
   "iPhone6s",
@@ -26,8 +27,18 @@ INSERT INTO product VALUES (
   "身份的象征"
 );
 
+-- data for Stock
 INSERT INTO stock VALUES (
   1,
   100,
   ""
 );
+
+-- data for Customer
+INSERT INTO customer VALUES (
+  1,
+  "阮哥",
+  "13000000000",
+  "中国地质大学（北京）",
+  "对的呀，就是这样的呀"
+)
