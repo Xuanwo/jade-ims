@@ -11,7 +11,7 @@ INSERT INTO Supplier VALUES (
 
 INSERT INTO Supplier VALUES (
   2,
-  "Google ",
+  "Google",
   "Larry Page",
   "13000000000",
   "美国",
@@ -27,10 +27,24 @@ INSERT INTO product VALUES (
   "身份的象征"
 );
 
+INSERT INTO product VALUES (
+  2,
+  "Nexus 6P",
+  "6000",
+  2,
+  "谷歌大法好！"
+);
+
 -- data for Stock
 INSERT INTO stock VALUES (
   1,
   100,
+  ""
+);
+
+INSERT INTO stock VALUES (
+  2,
+  88,
   ""
 );
 

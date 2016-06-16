@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, session, redirect, url_for
-from jade_ims.models import db, Customer, InputBill, SaleBill, EnterStockBill, Stock
+from jade_ims.models import db, Customer, InputBill, SaleBill, Stock
 
 dashboard = Blueprint('dashboard', __name__)
 
