@@ -39,7 +39,7 @@ def pass_enterstock():
         except:
             db.session.rollback()
             flash('进货单审核失败，请重试！', 'danger')
-    return redirect(url_for('stock.list_stock'))
+    return redirect(url_for('enterstockbill.list_enterstock'))
 
 
 @enterstockbill.route('/stock/enter/cancel', methods=['POST'])
@@ -50,5 +50,5 @@ def cancel_entersotck():
     if request.method == 'POST':
         db.session.delete(inputbill)
         db.session.commit()
-        flash('进货单禁止成功！', 'success')
-    return redirect(url_for('stock.list_stock'))
+        flash('进货单取消成功！', 'success')
+    return redirect(url_for('enterstockbill.list_enterstock'))

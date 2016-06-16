@@ -45,4 +45,16 @@ def pass_leavestock():
                 flash('销货单审核失败，请重试！', 'danger')
         else:
             flash('库存不足，请进货！', 'danger')
-    return redirect(url_for('stock.list_stock'))
+    return redirect(url_for('leavestockbill.leave_stock'))
+
+
+@leavestockbill.route('/stock/leave/cancel', methods=['POST'])
+def cancel_leavestock():
+    form = request.form
+    print(form)
+    salebill = SaleBill.query.get(int(form['salebillid']))
+    if request.method == 'POST':
+        db.session.delete(salebill)
+        db.session.commit()
+        flash('销货单取消成功！', 'success')
+    return redirect(url_for('leavestockbill.leave_stock'))
