@@ -19,8 +19,8 @@ def add_user():
         print(form)
         customer = Customer(form['customer_name'],
                             form['customer_phone'],
-                            form['customer_remark'],
-                            form['customer_address'])
+                            form['customer_address'],
+                            form['customer_remark'])
         try:
             db.session.add(customer)
             db.session.commit()
