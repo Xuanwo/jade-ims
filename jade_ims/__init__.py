@@ -1,5 +1,5 @@
 from flask import Flask, session, render_template, redirect, url_for, request
-from models import db
+from jade_ims.models import db
 from werkzeug.utils import import_string
 
 bps = ['jade_ims.views.dashboard:dashboard',
