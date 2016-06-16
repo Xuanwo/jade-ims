@@ -44,4 +44,11 @@ def pass_enterstock():
 
 @enterstockbill.route('/stock/enter/cancel', methods=['POST'])
 def cancel_entersotck():
-    pass
+    form = request.form
+    print(form)
+    inputbill = InputBill.query.get(int(form['inputbillid']))
+    if request.method == 'POST':
+        db.session.delete(inputbill)
+        db.session.commit()
+        flash('进货单禁止成功！', 'success')
+    return redirect(url_for('stock.list_stock'))
