@@ -15,6 +15,7 @@
                             </div>
                             <div class="modal-body">
                                 <form role="form" method="post" id="enterstockform{{ i.ID }}">
+                                    <input hidden name="inputbillid" value="{{ i.ID }}">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <div class="form-group input-group">
@@ -63,6 +64,17 @@
                                         </div>
                                     </div>
                                 </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-danger" type="submit" form="enterstockform{{ i.ID }}"
+                                        formmethod="post"
+                                        formaction="/stock/enter/cancel">
+                                    禁止
+                                </button>
+                                <button class="btn btn-success" type="submit" form="enterstockform{{ i.ID }}"
+                                        formmethod="post"
+                                        formaction="/stock/enter/pass">通过
+                                </button>
                             </div>
                         </div>
                     </div>
