@@ -1,1 +1,100 @@
 {% extends 'layout.html' %}
+{% block body %}
+    <div class="row">
+        <div class="col-lg-12">
+            {% for i in data %}
+                <div class="modal fade" id="leavestockbill{{ i.ID }}" tabindex="-1">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                        aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">
+                                    销货单 #{{ i.ID }}
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                <form role="form" method="post" id="leavestockform{{ i.ID }}">
+                                    <input hidden name="salebillid" value="{{ i.ID }}">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">商品名</span>
+                                                <select class="form-control" name="product_name" disabled>
+                                                    <option>{{ i.Product_Name }}</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">销售数量</span>
+                                                <input type="number" name="quantity" class="form-control"
+                                                       value="{{ i.Quantity }}" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">销售价格</span>
+                                                <input type="number" name="price" class="form-control"
+                                                       value="{{ i.Price }}"
+                                                       readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">销售时间</span>
+                                                <input type="text" name="datetime" id="inputbill_datetime"
+                                                       class="form_datetime form-control" value="{{ i.DateTime }}"
+                                                       disabled>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="form-group">
+                                                <label>备注</label>
+                                        <textarea class="form-control" name="product_remark"
+                                                  rows="3" content="" readonly>{{ i.Remark }}
+                                        </textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-danger" type="submit" form="leavestockform{{ i.ID }}"
+                                        formmethod="post"
+                                        formaction="/stock/leave/cancel">
+                                    禁止
+                                </button>
+                                <button class="btn btn-success" type="submit" form="leavestockform{{ i.ID }}"
+                                        formmethod="post"
+                                        formaction="/stock/leave/pass">通过
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    待处理销货单
+                </div>
+                <div class="panel-body">
+                    <div class="list-group">
+                        {% for i in data %}
+                            <button class="btn list-group-item" data-toggle="modal"
+                                    data-target="#leavestockbill{{ i.ID }}">
+                                #{{ i.ID }} 审核销货单 {{ i.Product_Name }}
+                            </button>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
